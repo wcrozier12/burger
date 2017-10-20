@@ -1,22 +1,23 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-var port = 3000;
+const port = 3000;
 
-var app = express();
+const app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
+//WHY DOES THIS WORK?!?!?!
+app.use("/public", express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set Handlebars.
-var exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controller");
+const routes = require("./controllers/burgers_controller");
 
 
 app.use(routes);
