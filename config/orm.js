@@ -5,20 +5,23 @@ const orm = {
     let query = 'SELECT * FROM ??';
     connection.query(query, [tableName], function(err, result) {
       if (err) console.log(err);
-      console.log('orm result: ' + result);
       cb(result);
     });
   },
-  insertOne: function(tableName, colName1, colVal1){
+  insertOne: function(tableName, colName1, colVal1, cb){
     let query = 'INSERT INTO ?? (??) VALUES (?)';
     connection.query(query, [tableName, colName1, colVal1], function(err, result) {
-      console.log(result.affectedRows);
+      if (err) throw err;
+      console.log('Affected row: ' + result.affectedRows);
+      cb(result);
     });
   },
-  updateOne: function(tableName, colVal1, val1, colVal2, val2) {
+  updateOne: function(tableName, colName1, colVal1, colName2, colVal2, cb) {
     let query = 'UPDATE ?? SET ?? = ? WHERE ?? = ?';
-    connection.query(query, [tableName, colVal1, val1, colVal2, val2], function(err,result) {
-      console.log(result.affectedRows);
+    connection.query(query, [tableName, colName1, colVal1, colName2, colVal2], function(err,result) {
+      if (err) throw err;
+      console.log('Affected rows: ' + result.affectedRows);
+      cb(result);
     });
   }
 };
