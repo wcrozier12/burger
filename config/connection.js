@@ -1,11 +1,18 @@
 const mysql = require("mysql");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Horizon45!",
-  database: "burgers_Db"
-});
+let connection;
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL)
+}
+else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "burgers_Db"
+  });
+}
+
 
 connection.connect(function(err) {
   if (err) {
