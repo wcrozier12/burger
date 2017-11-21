@@ -12,6 +12,7 @@ $(function() {
     let newBurger = {
       name: $('#burgName').val()
     }
+
     $.ajax("/api/burgers", {
       type: "POST",
       data: newBurger
@@ -31,7 +32,7 @@ $(function() {
     let readyToEat = {
       status: $(this).data('readytoeat')
     };
-
+    // Makes a put request with the readyToEat status of 0/1 to change burger to devoured or not devoured.
     $.ajax('/api/burgers/' + id, {
       type: 'PUT',
       data: readyToEat

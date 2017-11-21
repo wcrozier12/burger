@@ -2,11 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 let port = process.env.PORT || 3000;
-console.log(port);
 const app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
-//WHY DOES THIS WORK?!?!?!
 app.use("/public", express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
